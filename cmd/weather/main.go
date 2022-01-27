@@ -1,8 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"github.com/maxence-charriere/go-app/v9/pkg/app"
-	"net/http"
 	"strconv"
 	"time"
 )
@@ -11,13 +11,16 @@ func main() {
 	app.Route("/", new(MainPage))
 	app.RunWhenOnBrowser()
 
-	http.Handle("/", &app.Handler{
+	err := app.GenerateStaticWebsite("./docs", &app.Handler{
 		Name: "Test",
 		Styles: []string{
 			"https://www.w3schools.com/w3css/4/w3.css",
 		},
+		Resources: app.GitHubPages("reimagined-spork"),
 	})
-	http.ListenAndServe(":http", nil)
+	if err != nil {
+		fmt.Println("[ERROR]", err)
+	}
 }
 
 type MainPage struct {
