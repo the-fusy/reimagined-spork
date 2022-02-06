@@ -1,4 +1,4 @@
-package main
+package weather
 
 import (
 	"encoding/json"
@@ -7,11 +7,11 @@ import (
 	"time"
 )
 
-type dayWeather struct {
+type DayData struct {
 	Temp float32
 }
 
-func getWeatherForecast(city string) (map[time.Time]dayWeather, error) {
+func GetForecast(city string) (map[time.Time]DayData, error) {
 	url := "https://api.weatherapi.com/v1/forecast.json?aqu=no&days=10&key=c8a4faae610d4e5bb9404401222701&q=" + city
 
 	res, err := http.Get(url)
@@ -39,13 +39,13 @@ func getWeatherForecast(city string) (map[time.Time]dayWeather, error) {
 		return nil, err
 	}
 
-	weatherByDay := make(map[time.Time]dayWeather)
+	weatherByDay := make(map[time.Time]DayData)
 	for _, day := range apiResp.Forecast.ForecastDay {
 		date, err := time.Parse("2006-01-02", day.Date)
 		if err != nil {
 			return nil, err
 		}
-		weatherByDay[date] = dayWeather{Temp: day.Day.Temp}
+		weatherByDay[date] = DayData{Temp: day.Day.Temp}
 	}
 
 	return weatherByDay, nil

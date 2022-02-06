@@ -1,0 +1,13 @@
+<div class="w3-card-4 w3-display-middle w3-row" style="width: 50%">
+    <div class="w3-button w3-col s2" style="height: 100%" @click="c.LoadPrevDay(event)"><</div>
+    <div class="w3-col s8">
+        <div class="w3-container w3-row w3-blue">
+            <h1 class="w3-col s6" vg-content="c.City"></h1>
+            <h1 class="w3-col s6 w3-right-align" vg-content="c.Date()"></h1>
+        </div>
+        <div class="w3-container">
+            <div class="w3-center" style="font-size: 200px" vg-content="c.Degree()"></div>
+        </div>
+    </div>
+    <div class="w3-button w3-col s2" style="height: 100%" @click="c.LoadNextDay(event)">></div>
+</div>

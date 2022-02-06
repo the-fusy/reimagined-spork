@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/maxence-charriere/go-app/v9/pkg/app"
+	"github.com/spadiff/reimagined-spork/internal/weather"
 	"strconv"
 	"time"
 )
@@ -39,7 +40,7 @@ type Weather struct {
 	date             time.Time
 	minDate, maxDate time.Time
 
-	dayData map[time.Time]dayWeather
+	dayData map[time.Time]weather.DayData
 }
 
 func (w *Weather) OnMount(ctx app.Context) {
@@ -49,7 +50,7 @@ func (w *Weather) OnMount(ctx app.Context) {
 	w.maxDate = w.date.Add(2 * 24 * time.Hour)
 
 	var err error
-	w.dayData, err = getWeatherForecast(w.city)
+	w.dayData, err = weather.GetForecast(w.city)
 	if err != nil {
 		w.dayData = nil
 	}
