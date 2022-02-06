@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/maxence-charriere/go-app/v9/pkg/app"
-	"github.com/spadiff/reimagined-spork/internal/weather"
 	"strconv"
 	"time"
+
+	"github.com/maxence-charriere/go-app/v9/pkg/app"
+	"github.com/spadiff/reimagined-spork/internal/weather"
 )
 
 func main() {

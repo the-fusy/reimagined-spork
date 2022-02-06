@@ -1,10 +1,11 @@
 package components
 
 import (
-	"github.com/spadiff/reimagined-spork/internal/weather"
-	"github.com/vugu/vugu"
 	"strconv"
 	"time"
+
+	"github.com/spadiff/reimagined-spork/internal/weather"
+	"github.com/vugu/vugu"
 )
 
 type Weather struct {
